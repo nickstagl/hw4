@@ -1,10 +1,19 @@
 <h1><%= @place["name"] %></h1>
 
 <h2>My Entries</h2>
+<% if @entries.empty? %>
+  <p>No entries yet.</p>
+<% end %>
 <% for entry in @entries %>
-  <h3><%= entry["title"] %></h3>
-  <h4><%= entry["occurred_on"] %></h4>
-  <p><%= entry["description"] %></p>
+  <div>
+    <h3><%= entry["title"] %></h3>
+    <h4><%= entry["occurred_on"] %></h4>
+    <p><%= entry["description"] %></p>
+    <% if entry["image"].present? %>
+      <img src="/uploads/<%= entry["image"] %>" style="max-width: 400px;">
+    <% end %>
+  </div>
+  <hr>
 <% end %>
 
 <p>
@@ -12,5 +21,5 @@
 </p>
 
 <p>
-  <a href="/places">Back to All Places</a>
+  <a href="/">Back to All Places</a>
 </p>

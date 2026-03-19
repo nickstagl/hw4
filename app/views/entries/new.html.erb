@@ -1,6 +1,6 @@
-<h1>New Entry</h1>
+<h1>New Entry for <%= @place["name"] %></h1>
 
-<form action="/entries" method="post">
+<form action="/entries" method="post" enctype="multipart/form-data">
   <input type="hidden" name="place_id" value="<%= params["place_id"] %>">
 
   <p>
@@ -10,13 +10,22 @@
 
   <p>
     <label for="description_input">Description</label>
-    <input type="text" name="description" id="description_input">
+    <textarea name="description" id="description_input" rows="5" cols="40"></textarea>
   </p>
 
   <p>
-    <label for="occurred_on_input">Occurred On</label>
+    <label for="occurred_on_input">Date</label>
     <input type="date" name="occurred_on" id="occurred_on_input">
+  </p>
+
+  <p>
+    <label for="image_input">Image (optional)</label>
+    <input type="file" name="image" id="image_input" accept="image/*">
   </p>
 
   <button>Save</button>
 </form>
+
+<p>
+  <a href="/places/<%= params["place_id"] %>">Back</a>
+</p>
